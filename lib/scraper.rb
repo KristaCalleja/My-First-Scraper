@@ -16,10 +16,10 @@ def scrape_craiglist_antiques(city)
   city = URI.open("https://#{city}.craigslist.org/d/for-sale/search/sss?query=antiques&sort=rel")
   doc = Nokogiri::HTML(city)
 
-  antiques_found << doc.search('.result-info .result-title').each do |element|
+  antiques_found << doc.search('.result-info .result-title').map do |element|
     puts "#{element.text.strip}"
   end
 
 end
 
-puts scrape_craiglist_antiques("saopaulo")
+puts scrape_craiglist_antiques("london")
